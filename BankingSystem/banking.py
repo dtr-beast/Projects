@@ -111,8 +111,7 @@ def login(details=False, card=None, pin=None) -> list:
     scursor.execute(f"SELECT * "
                     f"FROM card "
                     f"WHERE number =  '{card}' {f'AND pin = {tick + str(pin) + tick}' if details == False else ''}; ")
-    # data =
-    # print(data)
+    
     return scursor.fetchone()
 
 
@@ -171,10 +170,7 @@ class Card:
         scursor.execute(f'INSERT INTO card (number, pin)'
                         f'VALUES ({self.accNum}, {self.pin}); ')
         db.commit()
-        # print('Committed')
-        # scursor.execute(f'SELECT * FROM card '
-        #                 f'WHERE number = "{self.accNum}" AND pin = "{self.pin}";')
-        # print(scursor.fetchone())
+        
 
 
 if __name__ == '__main__':
@@ -192,8 +188,6 @@ if __name__ == '__main__':
     except sqlite3.OperationalError:
         print('SQL ERROR')
     finally:
-        # scursor.execute("SELECT * FROM card;")
-        # print(scursor.fetchall())
         print("\nBye!")
         db.commit()
         db.close()
